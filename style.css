@@ -1,0 +1,23 @@
+table {
+  border: 1px solid #666;   
+    width: 100%;
+}
+th {
+  background: #f8f8f8; 
+  font-weight: bold;    
+    padding: 2px;
+}
+.draggable {
+/*border: 1px solid rgba(0,0,0,0.2);*/
+}
+
+#watchface {
+    width: 144px;
+    height: 168px;
+    background-color: lightgrey;
+}
+span {
+font-size: 10px;
+
+
+}

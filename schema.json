@@ -1,0 +1,727 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "OSSW watchface schema",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "watchset"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "apiVersion": {
+      "type": "number",
+      "default": 1
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "screens": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "defaultActions": {
+                  "type": "string",
+                  "enum": [
+                    "watchface"
+                  ]
+                },
+                "settings": {
+                  "type": "object",
+                  "properties": {
+                    "invertible": {
+                      "type": "string",
+                      "enum": [
+                        "true",
+                        "false"
+                      ]
+                    }
+                  }
+                },
+                "actions": {
+                  "type": "object",
+                  "properties": {
+                    "button_back_short": {
+                      "type": "object",
+                      "properties": {
+                        "action": {
+                          "type": "string"
+                        },
+                        "screenId": {
+                          "type": "string"
+                        },
+                        "extensionId": {
+                          "type": "string"
+                        },
+                        "function": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "property": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "button_back_long": {
+                      "type": "object",
+                      "properties": {
+                        "action": {
+                          "type": "string"
+                        },
+                        "screenId": {
+                          "type": "string"
+                        },
+                        "extensionId": {
+                          "type": "string"
+                        },
+                        "function": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "property": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "button_select_short": {
+                      "type": "object",
+                      "properties": {
+                        "action": {
+                          "type": "string"
+                        },
+                        "screenId": {
+                          "type": "string"
+                        },
+                        "extensionId": {
+                          "type": "string"
+                        },
+                        "function": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "property": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "button_select_long": {
+                      "type": "object",
+                      "properties": {
+                        "action": {
+                          "type": "string"
+                        },
+                        "screenId": {
+                          "type": "string"
+                        },
+                        "extensionId": {
+                          "type": "string"
+                        },
+                        "function": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "property": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "button_up_short": {
+                      "type": "object",
+                      "properties": {
+                        "action": {
+                          "type": "string"
+                        },
+                        "screenId": {
+                          "type": "string"
+                        },
+                        "extensionId": {
+                          "type": "string"
+                        },
+                        "function": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "property": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "button_up_long": {
+                      "type": "object",
+                      "properties": {
+                        "action": {
+                          "type": "string"
+                        },
+                        "screenId": {
+                          "type": "string"
+                        },
+                        "extensionId": {
+                          "type": "string"
+                        },
+                        "function": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "property": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "button_down_short": {
+                      "type": "object",
+                      "properties": {
+                        "action": {
+                          "type": "string"
+                        },
+                        "screenId": {
+                          "type": "string"
+                        },
+                        "extensionId": {
+                          "type": "string"
+                        },
+                        "function": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "property": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "button_down_long": {
+                      "type": "object",
+                      "properties": {
+                        "action": {
+                          "type": "string"
+                        },
+                        "screenId": {
+                          "type": "string"
+                        },
+                        "extensionId": {
+                          "type": "string"
+                        },
+                        "function": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "property": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "id": {
+                  "type": "string"
+                },
+                "control": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "length": {
+                        "type": "number"
+                      },
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "number",
+                          "image",
+                          "text",
+                          "imageFromSet"
+                        ]
+                      },
+                      "position": {
+                        "type": "object",
+                        "properties": {
+                          "x": {
+                            "type": "number",
+                            "minimum": 1,
+                            "maximum": 144
+                          },
+                          "y": {
+                            "type": "number",
+                            "minimum": 1,
+                            "maximum": 168
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "size": {
+                        "type": "object",
+                        "properties": {
+                          "width": {
+                            "type": "number",
+                            "minimum": 1,
+                            "maximum": 144
+                          },
+                          "height": {
+                            "type": "number",
+                            "minimum": 1,
+                            "maximum": 168
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "font": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "style": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "horizontalAlign": {
+                            "type": "string"
+                          },
+                          "width": {
+                            "type": "number",
+                            "minimum": 1,
+                            "maximum": 144
+                          },
+                          "height": {
+                            "type": "number",
+                            "minimum": 1,
+                            "maximum": 168
+                          },
+                          "multiline": {
+                            "type": "string"
+                          },
+                          "numbersFont": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "space": {
+                            "type": "number",
+                            "minimum": 1,
+                            "maximum": 168
+                          },
+                          "leftPadded": {
+                            "type": "boolean"
+                          },
+                          "border": {
+                            "type": "number",
+                            "minimum": 1,
+                            "maximum": 168
+                          },
+                          "verticalAlign": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "source": {
+                        "$ref": "#/definitions/control-source"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "imageSet": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "numberRange": {
+                        "type": "string"
+                      },
+                      "image": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "maxValue": {
+                        "type": "number"
+                      },
+                      "otherwise": {
+                        "type": "array"
+                      },
+                      "when": {
+                        "type": "object"
+                      },
+                      "choose": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "property": {
+                            "type": "string"
+                          },
+                          "converter": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          ]
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "data": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "screens"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "type",
+    "name",
+    "data"
+  ],
+  "additionalProperties": false,
+  "definitions": {
+    "Control-allInOne": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "length": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "number",
+              "image",
+              "text",
+              "imageFromSet"
+            ]
+          },
+          "position": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 144
+              },
+              "y": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 168
+              }
+            },
+            "additionalProperties": false
+          },
+          "size": {
+            "type": "object",
+            "properties": {
+              "width": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 144
+              },
+              "height": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 168
+              }
+            },
+            "additionalProperties": false
+          },
+          "font": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          },
+          "style": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "horizontalAlign": {
+                "type": "string"
+              },
+              "width": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 144
+              },
+              "height": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 168
+              },
+              "multiline": {
+                "type": "string"
+              },
+              "numbersFont": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "space": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 168
+              },
+              "leftPadded": {
+                "type": "boolean"
+              },
+              "border": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 168
+              },
+              "verticalAlign": {
+                "type": "string"
+              }
+            }
+          },
+          "source": {
+            "type": "object",
+            "properties": {
+              "property": {
+                "type": "string"
+              },
+              "extensionId": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "index": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "property": {
+                    "type": "string"
+                  }
+                }
+              },
+              "converter": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "value": {
+                "type": "string"
+              },
+              "imageSet": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "numberRange": {
+                "type": "string"
+              },
+              "image": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "maxValue": {
+                "type": "number"
+              },
+              "choose": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "property": {
+                    "type": "string"
+                  },
+                  "converter": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "when": {
+                "type": "object"
+              },
+              "otherwise": {
+                "type": "array"
+              }
+            },
+            "dependencies": {
+              "choose": [
+                "when"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "control-source": {
+      "type": "object",
+      "properties": {
+        "property": {
+          "type": "string"
+        },
+        "extensionId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "index": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "property": {
+              "type": "string"
+            }
+          }
+        },
+        "converter": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
