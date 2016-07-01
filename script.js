@@ -138,7 +138,7 @@ function drawControl(controlData, index) {
             control.css("height", controlData.size.height * zoom);
 
         }
-        control.css("position", "absolute");
+              control.css("position", "absolute");
         control.css("left", controlData.position.x * zoom);
         control.css("top", controlData.position.y * zoom);
         control.css("background-color", "rgba(255,0,0,0.1)");
@@ -180,7 +180,8 @@ function drawControl(controlData, index) {
 
 
             }
-        }).tooltip();
+        });
+        // }).tooltip();
 
         var controlsList = $("<div id=\"controlsList_" + index + "\"/>");
         var coltrolsListCheckbox = $("<input type=\"checkbox\" name=\"my-checkbox\" id=\"checkbox_" + index + "\"/>");
