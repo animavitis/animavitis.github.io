@@ -38,10 +38,10 @@ function initEditor() {
         var errors = editor.validate();
 
         var indicator = document.getElementById('valid_indicator');
-        
+
         watchface = editor.getValue();
         drawWatchface(watchface);
-        
+
         // Not valid
         if (errors.length) {
             indicator.className = 'label alert';
@@ -114,10 +114,10 @@ function saveFile() {
 function drawWatchface(data) {
     $("#watchface").html("");
     $("#controlsList").html("");
-
-    for (var i = 0; i < data.data.screens[0].controls.length; i++) {
-        drawControl(data.data.screens[0].controls[i], i);
-
+    if (!!data.data.screens.length > 0) {
+        for (var i = 0; i < data.data.screens[0].controls.length; i++) {
+            drawControl(data.data.screens[0].controls[i], i);
+        }
     }
 }
 
