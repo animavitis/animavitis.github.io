@@ -38,7 +38,10 @@ function initEditor() {
         var errors = editor.validate();
 
         var indicator = document.getElementById('valid_indicator');
-
+        
+        watchface = editor.getValue();
+        drawWatchface(watchface);
+        
         // Not valid
         if (errors.length) {
             indicator.className = 'label alert';
