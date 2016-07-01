@@ -1,6 +1,63 @@
 
 var watchface = {};
 var zoom = 4;
+var editor;
+
+function positionToggle() {
+    $("#position").show();
+    $("#jsonEditor").hide();
+
+}
+function jsonEditorToggle() {
+    $("#position").hide();
+    $("#jsonEditor").show();
+
+}
+
+
+
+
+function initEditor() {
+    // Initialize the editor
+    editor = new JSONEditor(document.getElementById('editor_holder'), {
+        // Enable fetching schemas via ajax
+        ajax: true,
+
+        // The schema for the editor
+        schema: {
+            $ref: "schema.json",
+            format: "grid"
+        },
+
+        // Seed the form with a starting value
+        startval: {}
+    });
+
+    editor.on('change', function () {
+        // Get an array of errors from the validator
+        var errors = editor.validate();
+
+        var indicator = document.getElementById('valid_indicator');
+
+        // Not valid
+        if (errors.length) {
+            indicator.className = 'label alert';
+            indicator.textContent = 'not valid';
+        }
+        // Valid
+        else {
+            indicator.className = 'label success';
+            indicator.textContent = 'valid';
+        }
+    });
+
+
+
+}
+
+
+
+
 
 
 function loadFile() {
@@ -31,6 +88,7 @@ function loadFile() {
         json = e.target.result;
         watchface = JSON.parse(json);
         console.log(watchface);
+        editor.setValue(watchface);
 
         zoom = $('#zoom').val();
         $("#watchface").css("width", 144 * zoom);
@@ -94,6 +152,7 @@ function drawControl(controlData, index) {
                 this.childNodes[0].innerText = "x:" + control[0].offsetTop / zoom + " y:" + control[0].offsetLeft / zoom;
                 watchface.data.screens[0].controls[control[0].controlId].position.x = control[0].offsetTop / zoom;
                 watchface.data.screens[0].controls[control[0].controlId].position.y = control[0].offsetLeft / zoom;
+                editor.setValue(watchface);
             }
         });
         control.resizable({
@@ -105,13 +164,15 @@ function drawControl(controlData, index) {
                 this.childNodes[2].innerText = "w:" + control[0].offsetWidth / zoom + " h:" + control[0].offsetHeight / zoom;
 
                 if (watchface.data.screens[0].controls[control[0].controlId].type == "imageFromSet" || watchface.data.screens[0].controls[control[0].controlId].type == "number") {
-                    watchface.data.screens[0].controls[control[0].controlId].style.width = control[0].offsetWidth / zoom
+                    watchface.data.screens[0].controls[control[0].controlId].style.width = control[0].offsetWidth / zoom;
                     watchface.data.screens[0].controls[control[0].controlId].style.height = control[0].offsetHeight / zoom;
+                    editor.setValue(watchface);
 
                 }
                 if (watchface.data.screens[0].controls[control[0].controlId].type == "text") {
                     watchface.data.screens[0].controls[control[0].controlId].size.width = control[0].offsetWidth / zoom;
-                    watchface.data.screens[0].controls[control[0].controlId].size.height = control[0].offsetHeight / zoom
+                    watchface.data.screens[0].controls[control[0].controlId].size.height = control[0].offsetHeight / zoom;
+                    editor.setValue(watchface);
                 }
 
 
