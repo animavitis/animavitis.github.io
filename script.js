@@ -142,7 +142,7 @@ function drawControl(controlData, index) {
         control.css("left", controlData.position.x * zoom);
         control.css("top", controlData.position.y * zoom);
         control.css("background-color", "rgba(255,0,0,0.1)");
-        control.append($("<span>x:" + control[0].offsetTop / zoom + "y:" + control[0].offsetLeft / zoom + "</span>"));
+        control.append($("<span>x:" + control[0].offsetLeft / zoom + "y:" + control[0].offsetTop / zoom + "</span>"));
         control.append($("<br /><span>w:" + control[0].offsetWidth / zoom + "h:" + control[0].offsetHeight / zoom + "</span>"));
         control.prop("title", controlData.type + "_" + index);
         control.prop("controlId", index);
