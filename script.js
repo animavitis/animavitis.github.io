@@ -8,7 +8,11 @@ function positionToggle() {
     $("#jsonEditor").hide();
     $("#size").hide();
     editor.disable();
-    drawWatchface(watchface);
+    $("#watchface-position").css("width", 144 * zoom);
+    $("#watchface-position").css("height", 168 * zoom);
+    $("#watchface-position").css("background-color", "#eee");
+
+    drawWatchface(watchface, "-position");
 
 }
 
@@ -17,7 +21,10 @@ function sizeToggle() {
     $("#jsonEditor").hide();
     $("#size").show();
     editor.disable();
-    drawWatchface(watchface);
+    $("#watchface-size").css("width", 144 * zoom);
+    $("#watchface-size").css("height", 168 * zoom);
+    $("#watchface-size").css("background-color", "#eee");
+    drawWatchface(watchface, "-size");
 
 }
 
@@ -55,7 +62,7 @@ function initEditor() {
         var indicator = document.getElementById('valid_indicator');
 
         watchface = editor.getValue();
-        drawWatchface(watchface);
+
 
         // Not valid
         if (errors.length) {
@@ -111,9 +118,10 @@ function loadFile() {
 
 
         zoom = $('#zoom').val();
-        $("#watchface").css("width", 144 * zoom);
-        $("#watchface").css("height", 168 * zoom);
-        drawWatchface(watchface);
+        $("#watchface-position").css("width", 144 * zoom);
+        $("#watchface-position").css("height", 168 * zoom);
+        $("#watchface-position").css("background-color", "#eee");
+        drawWatchface(watchface, "-position");
     }
 }
 
@@ -128,24 +136,24 @@ function saveFile() {
 
 
 
-function drawWatchface(data) {
-    $("#watchface").html("");
-    $("#controlsList").html("");
+function drawWatchface(data, sufix) {
+    $("#watchface" + sufix).html("");
+    $("#controlsList" + sufix).html("");
     if (!!data.data.screens.length > 0) {
         for (var i = 0; i < data.data.screens[0].controls.length; i++) {
-            drawControl(data.data.screens[0].controls[i], i);
+            drawControl(data.data.screens[0].controls[i], i, sufix);
         }
     }
 }
 
 
-function drawControl(controlData, index) {
+function drawControl(controlData, index, sufix) {
 
 
     var control = $("<div class=\"draggable\" id=\"control_" + index + "\"/>")
 
     if (controlData.type !== undefined) {
-        $("#watchface").append(control);
+        $("#watchface" + sufix).append(control);
         if (controlData.type == "imageFromSet" || controlData.type == "number") {
             control.css("width", controlData.style.width * zoom);
             control.css("height", controlData.style.height * zoom);
@@ -156,52 +164,61 @@ function drawControl(controlData, index) {
 
         }
         control.css("position", "absolute");
+        control.css("box-shadow", " 0px 0px 1px black inset");
         control.css("left", controlData.position.x * zoom);
         control.css("top", controlData.position.y * zoom);
-        control.css("background-color", "rgba(255,0,0,0.1)");
-        control.append($("<span>x:" + control[0].offsetLeft / zoom + "y:" + control[0].offsetTop / zoom + "</span>"));
-        control.append($("<br /><span>w:" + control[0].offsetWidth / zoom + "h:" + control[0].offsetHeight / zoom + "</span>"));
+        var color = ["rgba(255,0,0,0.1)", "rgba(0,255,0,0.1)", "rgba(0,0,255,0.1)", "rgba(255,255,0,0.1)", "rgba(255,0,255,0.1)", "rgba(0,255,255,0.1)"];
+        var random = color[index % color.length];
+        control.css("background-color", random);
+        control.append($("<span>x:" + control[0].offsetLeft / zoom + " y:" + control[0].offsetTop / zoom + "</span>"));
+        control.append($("<br /><span>w:" + control[0].offsetWidth / zoom + " h:" + control[0].offsetHeight / zoom + "</span>"));
         control.prop("title", controlData.type + "_" + index);
         control.prop("controlId", index);
-        control.draggable({
-            containment: "parent",
-            grid: [zoom, zoom],
-            stop: function (event, ui) {
-                this.childNodes[0].innerText = "";
-                this.childNodes[0].innerText = "x:" + control[0].offsetLeft / zoom + " y:" + control[0].offsetTop / zoom;
-                watchface.data.screens[0].controls[control[0].controlId].position.x = control[0].offsetLeft / zoom;
-                watchface.data.screens[0].controls[control[0].controlId].position.y = control[0].offsetTop / zoom;
 
-            }
-        });
-        control.resizable({
-            containment: "parent",
-            grid: [4, 4],
-            stop: function (event, ui) {
-                this.childNodes[2].innerText = "";
-                this.childNodes[2].innerText = "w:" + control[0].offsetWidth / zoom + " h:" + control[0].offsetHeight / zoom;
+        if ($("#watchface-position").is(":visible")) {
+            control.draggable({
+                containment: "parent",
+                grid: [zoom, zoom],
+                stop: function (event, ui) {
+                    this.childNodes[0].innerText = "";
+                    this.childNodes[0].innerText = "x:" + control[0].offsetLeft / zoom + " y:" + control[0].offsetTop / zoom;
+                    watchface.data.screens[0].controls[control[0].controlId].position.x = control[0].offsetLeft / zoom;
+                    watchface.data.screens[0].controls[control[0].controlId].position.y = control[0].offsetTop / zoom;
 
-                if (watchface.data.screens[0].controls[control[0].controlId].type == "imageFromSet" || watchface.data.screens[0].controls[control[0].controlId].type == "number") {
-                    watchface.data.screens[0].controls[control[0].controlId].style.width = control[0].offsetWidth / zoom;
-                    watchface.data.screens[0].controls[control[0].controlId].style.height = control[0].offsetHeight / zoom;
+                }
+            });
+        }
+
+        if ($("#watchface-size").is(":visible")) {
+            control.resizable({
+                containment: "parent",
+                grid: [4, 4],
+                stop: function (event, ui) {
+                    this.childNodes[2].innerText = "";
+                    this.childNodes[2].innerText = "w:" + control[0].offsetWidth / zoom + " h:" + control[0].offsetHeight / zoom;
+
+                    if (watchface.data.screens[0].controls[control[0].controlId].type == "imageFromSet" || watchface.data.screens[0].controls[control[0].controlId].type == "number") {
+                        watchface.data.screens[0].controls[control[0].controlId].style.width = control[0].offsetWidth / zoom;
+                        watchface.data.screens[0].controls[control[0].controlId].style.height = control[0].offsetHeight / zoom;
+
+
+                    }
+                    if (watchface.data.screens[0].controls[control[0].controlId].type == "text") {
+                        watchface.data.screens[0].controls[control[0].controlId].size.width = control[0].offsetWidth / zoom;
+                        watchface.data.screens[0].controls[control[0].controlId].size.height = control[0].offsetHeight / zoom;
+
+                    }
 
 
                 }
-                if (watchface.data.screens[0].controls[control[0].controlId].type == "text") {
-                    watchface.data.screens[0].controls[control[0].controlId].size.width = control[0].offsetWidth / zoom;
-                    watchface.data.screens[0].controls[control[0].controlId].size.height = control[0].offsetHeight / zoom;
-
-                }
-
-
-            }
-        });
+            });
+        }
         control.tooltip();
 
         var controlsList = $("<div id=\"controlsList_" + index + "\"/>");
         var coltrolsListCheckbox = $("<input type=\"checkbox\" name=\"my-checkbox\" id=\"checkbox_" + index + "\"/>");
 
-        $("#controlsList").append(controlsList);
+        $("#controlsList" + sufix).append(controlsList);
         controlsList.append(coltrolsListCheckbox);
         controlsList.css("height", "50px");
         coltrolsListCheckbox.bootstrapSwitch({

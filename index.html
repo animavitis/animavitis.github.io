@@ -18,18 +18,16 @@
     <script>
     JSONEditor.defaults.theme = 'bootstrap3';
     JSONEditor.defaults.iconlib = 'bootstrap3';
-   // JSONEditor.defaults.object.options.remove_empty_properties = true;
+    JSONEditor.defaults.options.remove_empty_properties = true;
     </script>
 
     <link rel="stylesheet" type="text/css" href="/style.css">
-    <title>OSSW watchset editor</title>
+    <title>OSSW helpers</title>
 </head>
-
 
 <body role="document">
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
@@ -43,31 +41,18 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="positionToggle()">Position</a></li>
-                    <li><a href="#" onclick="sizeToggle()">Size</a></li>
-                    <li><a href="#" onclick="jsonEditorToggle()">Json GUI editor</a></li>
-                    <!--<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>-->
+                    <li><a onclick="positionToggle()">Position</a></li>
+                    <li><a onclick="sizeToggle()">Size</a></li>
+                    <li><a onclick="jsonEditorToggle()">Json GUI editor</a></li>
                 </ul>
             </div>
-            <!--/.nav-collapse -->
         </div>
     </nav>
 
     <div class="container theme-showcase" role="main">
 
         <div class="jumbotron">
-            <div class="row">
+            <div class="row"><br />
                 <div class="col-md-8">
                     <div class="input-group">
                         <span class="input-group-addon" id="select">OSSW watchface file</span>
@@ -86,37 +71,28 @@
             <span id='valid_indicator' class='badge'></span>
         </div>
 
-
-
-
         <div class="row" id="position">
             <div class="col-md-8">
                 <h4>Change controls position</h4>
-                <div id="watchface" style="position:relative" class="center-block"></div>
+                <div id="watchface-position" style="position:relative" class="center-block">
+                </div>
             </div>
             <div class="col-md-4">
                 <h4>Controls</h4>
-                <div id="controlsList" class="center-block"></div>
+                <div id="controlsList-position" class="center-block"></div>
             </div>
         </div>
-
-
-
-
 
         <div class="row" id="size" style="display: none;">
             <div class="col-md-8">
                 <h4>Resize controls</h4>
-                <div id="watchface" style="position:relative" class="center-block"></div>
+                <div id="watchface-size" style="position:relative" class="center-block"></div>
             </div>
             <div class="col-md-4">
                 <h4>Controls</h4>
-                <div id="controlsList" class="clearfix"></div>
+                <div id="controlsList-size" class="clearfix"></div>
             </div>
         </div>
-
-
-
 
         <div class="container theme-showcase" role="main" id="jsonEditor" style="display: none;">
             <div class='row'>
@@ -125,9 +101,8 @@
             </div>
         </div>
 
-
     </div>
-<script>initEditor()</script>
+    <script>initEditor()</script>
 </body>
 
 </html>
