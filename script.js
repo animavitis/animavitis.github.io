@@ -7,6 +7,7 @@ function positionToggle() {
     $("#position").show();
     $("#jsonEditor").hide();
     $("#size").hide();
+    editor.disable();
 
 }
 
@@ -14,13 +15,15 @@ function sizeToggle() {
     $("#position").hide();
     $("#jsonEditor").hide();
     $("#size").show();
+    editor.disable();
 
 }
 
 function jsonEditorToggle() {
     $("#position").hide();
     $("#jsonEditor").show();
-    $("#size").hide();
+    $("#size").hide(); editor.disable();
+    editor.enable();
     editor.setValue(watchface);
 }
 
