@@ -18,7 +18,7 @@
     <script>
     JSONEditor.defaults.theme = 'bootstrap3';
     JSONEditor.defaults.iconlib = 'bootstrap3';
-    JSONEditor.defaults.object.options.remove_empty_properties = true;
+   // JSONEditor.defaults.object.options.remove_empty_properties = true;
     </script>
 
     <link rel="stylesheet" type="text/css" href="/style.css">
@@ -43,7 +43,8 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" onclick="positionToggle()">Position / Resize</a></li>
+                    <li><a href="#" onclick="positionToggle()">Position</a></li>
+                    <li><a href="#" onclick="sizeToggle()">Size</a></li>
                     <li><a href="#" onclick="jsonEditorToggle()">Json GUI editor</a></li>
                     <!--<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -85,58 +86,48 @@
             <span id='valid_indicator' class='badge'></span>
         </div>
 
+
+
+
         <div class="row" id="position">
             <div class="col-md-8">
-                            <h4>Watchface Preview</h4>
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <!--<div class="modal-header">
-                            <h4 class="modal-title">OSSW watchface</h4>
-                        </div>-->
-                        <div class="modal-body">
-                            <div id="watchface" style="position:relative" class="center-block" /><br />
-                        </div>
-                        <!--<div class="modal-footer">
-                            <button type='button' id='btnLoad' onclick='move();' class="btn btn-block pull-right">move</button>
-                            <button type='button' id='btnLoad' onclick='resize();' class="btn btn-block pull-right">resize</button>
-                        </div>-->
-                    </div>
-                </div>
+                <h4>Change controls position</h4>
+                <div id="watchface" style="position:relative" class="center-block"></div>
             </div>
-
-        </div>
-        <div class="col-md-4">
-            <h4>Controls</h4>
-            <div id="controlsList" class="clearfix">
-
-
+            <div class="col-md-4">
+                <h4>Controls</h4>
+                <div id="controlsList" class="center-block"></div>
             </div>
         </div>
-    </div>
-
-    </div>
 
 
-    <div class="container theme-showcase" role="main" id="jsonEditor" style="display: none;">
-        <div class='row'>
-                    <h4>Json GUI editor</h4>
-            <div id='editor_holder' class='col-md-12'></div>
+
+
+
+        <div class="row" id="size" style="display: none;">
+            <div class="col-md-8">
+                <h4>Resize controls</h4>
+                <div id="watchface" style="position:relative" class="center-block"></div>
+            </div>
+            <div class="col-md-4">
+                <h4>Controls</h4>
+                <div id="controlsList" class="clearfix"></div>
+            </div>
         </div>
-  
-<script>
-    initEditor();
-</script>
-
-  
-
-</body>
-
-
-</div>
 
 
 
 
+        <div class="container theme-showcase" role="main" id="jsonEditor" style="display: none;">
+            <div class='row'>
+                <h4>Json GUI editor</h4>
+                <div id='editor_holder' class='col-md-12'></div>
+            </div>
+        </div>
+
+
+    </div>
+<script>initEditor()</script>
 </body>
 
 </html>

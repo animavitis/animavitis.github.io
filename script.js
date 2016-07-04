@@ -6,12 +6,22 @@ var editor;
 function positionToggle() {
     $("#position").show();
     $("#jsonEditor").hide();
+    $("#size").hide();
 
 }
+
+function sizeToggle() {
+    $("#position").hide();
+    $("#jsonEditor").hide();
+    $("#size").show();
+
+}
+
 function jsonEditorToggle() {
     $("#position").hide();
     $("#jsonEditor").show();
-
+    $("#size").hide();
+    editor.setValue(watchface);
 }
 
 
@@ -91,7 +101,9 @@ function loadFile() {
         json = e.target.result;
         watchface = JSON.parse(json);
         console.log(watchface);
-        editor.setValue(watchface);
+
+
+
 
         zoom = $('#zoom').val();
         $("#watchface").css("width", 144 * zoom);
@@ -148,40 +160,38 @@ function drawControl(controlData, index) {
         control.prop("controlId", index);
         control.draggable({
             containment: "parent",
-            grid: [4, 4],
+            grid: [zoom, zoom],
             stop: function (event, ui) {
-                var i = 5;
                 this.childNodes[0].innerText = "";
                 this.childNodes[0].innerText = "x:" + control[0].offsetLeft / zoom + " y:" + control[0].offsetTop / zoom;
                 watchface.data.screens[0].controls[control[0].controlId].position.x = control[0].offsetLeft / zoom;
                 watchface.data.screens[0].controls[control[0].controlId].position.y = control[0].offsetTop / zoom;
-                editor.setValue(watchface);
+
             }
         });
         control.resizable({
             containment: "parent",
             grid: [4, 4],
             stop: function (event, ui) {
-                var i = 5;
                 this.childNodes[2].innerText = "";
                 this.childNodes[2].innerText = "w:" + control[0].offsetWidth / zoom + " h:" + control[0].offsetHeight / zoom;
 
                 if (watchface.data.screens[0].controls[control[0].controlId].type == "imageFromSet" || watchface.data.screens[0].controls[control[0].controlId].type == "number") {
                     watchface.data.screens[0].controls[control[0].controlId].style.width = control[0].offsetWidth / zoom;
                     watchface.data.screens[0].controls[control[0].controlId].style.height = control[0].offsetHeight / zoom;
-                    editor.setValue(watchface);
+
 
                 }
                 if (watchface.data.screens[0].controls[control[0].controlId].type == "text") {
                     watchface.data.screens[0].controls[control[0].controlId].size.width = control[0].offsetWidth / zoom;
                     watchface.data.screens[0].controls[control[0].controlId].size.height = control[0].offsetHeight / zoom;
-                    editor.setValue(watchface);
+
                 }
 
 
             }
         });
-        // }).tooltip();
+        control.tooltip();
 
         var controlsList = $("<div id=\"controlsList_" + index + "\"/>");
         var coltrolsListCheckbox = $("<input type=\"checkbox\" name=\"my-checkbox\" id=\"checkbox_" + index + "\"/>");
@@ -200,16 +210,7 @@ function drawControl(controlData, index) {
             onSwitchChange: function (event, state) {
                 control.toggle();
             }
-
-
-
-
-
         });
-
-
     }
-
-
 }
 
