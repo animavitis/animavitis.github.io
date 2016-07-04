@@ -121,7 +121,16 @@ function loadFile() {
         $("#watchface-position").css("width", 144 * zoom);
         $("#watchface-position").css("height", 168 * zoom);
         $("#watchface-position").css("background-color", "#eee");
+        
+        if ($("#watchface-position").is(":visible")) {
         drawWatchface(watchface, "-position");
+        }
+        if ($("#watchface-size").is(":visible")) {
+        drawWatchface(watchface, "-size");
+        }
+        if ($("#jsonEditor").is(":visible")) {
+        editor.setValue(watchface);
+        }
     }
 }
 
