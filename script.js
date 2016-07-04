@@ -8,6 +8,7 @@ function positionToggle() {
     $("#jsonEditor").hide();
     $("#size").hide();
     editor.disable();
+    drawWatchface(watchface);
 
 }
 
@@ -16,6 +17,7 @@ function sizeToggle() {
     $("#jsonEditor").hide();
     $("#size").show();
     editor.disable();
+    drawWatchface(watchface);
 
 }
 
