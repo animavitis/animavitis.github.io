@@ -138,7 +138,7 @@ function drawControl(controlData, index) {
             control.css("height", controlData.size.height * zoom);
 
         }
-              control.css("position", "absolute");
+        control.css("position", "absolute");
         control.css("left", controlData.position.x * zoom);
         control.css("top", controlData.position.y * zoom);
         control.css("background-color", "rgba(255,0,0,0.1)");
@@ -152,9 +152,9 @@ function drawControl(controlData, index) {
             stop: function (event, ui) {
                 var i = 5;
                 this.childNodes[0].innerText = "";
-                this.childNodes[0].innerText = "x:" + control[0].offsetTop / zoom + " y:" + control[0].offsetLeft / zoom;
-                watchface.data.screens[0].controls[control[0].controlId].position.x = control[0].offsetTop / zoom;
-                watchface.data.screens[0].controls[control[0].controlId].position.y = control[0].offsetLeft / zoom;
+                this.childNodes[0].innerText = "x:" + control[0].offsetLeft / zoom + " y:" + control[0].offsetTop / zoom;
+                watchface.data.screens[0].controls[control[0].controlId].position.x = control[0].offsetLeft / zoom;
+                watchface.data.screens[0].controls[control[0].controlId].position.y = control[0].offsetTop / zoom;
                 editor.setValue(watchface);
             }
         });
